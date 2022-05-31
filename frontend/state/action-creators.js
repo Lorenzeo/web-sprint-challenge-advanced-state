@@ -31,8 +31,7 @@ export function resetForm() {
 
 // ❗ Async action creators
 export const fetchQuiz = () => (dispatch)=> {
-  dispatch(setMessage(""))
-  dispatch(setQuiz({}))
+  
   axios
   .get("http://localhost:9000/api/quiz/next")
   .then(res =>{
@@ -49,18 +48,18 @@ export const fetchQuiz = () => (dispatch)=> {
       // - Dispatch an action to send the obtained quiz to its state}
       
 export const postAnswer=(addAnswer)=>(dispatch)=> {
-  dispatch(selectAnswer(null))
+  // dispatch(selectAnswer(null))
   axios
   .post("http://localhost:9000/api/quiz/answer", addAnswer)
   .then(res =>{
     console.log(res)
     dispatch(setMessage(res.data.message))
+    dispatch(fetchQuiz())
     
   })
   .catch(err =>{
     dispatch(setMessage(err.response.data.message))
   })
-  dispatch(fetchQuiz())
   
 }
   // return function (dispatch) {

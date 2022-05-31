@@ -41,13 +41,11 @@ function wheel(state = {cog:initialWheelState}, action) {
   }
 }
 
-const initialQuizState = {}
+const initialQuizState = null
 function quiz(state = initialQuizState, action) {
   switch(action.type){
   case "SET_QUIZ_INTO_STATE":
     return action.payload
-  case "RESET_FORM":
-    return state = {}
   default:
     return state
   }
